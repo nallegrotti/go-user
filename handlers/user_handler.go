@@ -31,7 +31,7 @@ func HandleUserByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func getUsers(w http.ResponseWriter) {
-	users := services.GetAllUsers()
+	users, _ := services.GetAllUsers()
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(users)
@@ -44,7 +44,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	createdUser := services.CreateUser(user)
+	createdUser, _ := services.CreateUser(user)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
